@@ -1,0 +1,147 @@
+# ============================================================
+# Hugo PaperMod 配置 — hsiang0117.github.io
+# ============================================================
+
+baseURL: https://hsiang0117.github.io/
+locale: zh-cn
+title: "Hsiang's Space"
+theme: PaperMod
+
+# 分页
+paginate: 10
+
+# 摘要长度
+summaryLength: 120
+
+# 启用 emoji
+enableEmoji: true
+
+# ============================================================
+# 主导航菜单
+# ============================================================
+menu:
+  main:
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 10
+    - identifier: projects
+      name: 项目
+      url: /projects/
+      weight: 20
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 30
+    - identifier: archive
+      name: 归档
+      url: /archives/
+      weight: 40
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 50
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 60
+
+# ============================================================
+# 输出格式
+# ============================================================
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON  # 搜索需要
+
+# ============================================================
+# PaperMod 参数
+# ============================================================
+params:
+  # ---- 外观 ----
+  defaultTheme: auto
+  disableThemeToggle: false
+  ShowCodeCopyButtons: true
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowShareButtons: true
+  ShowToc: true
+  TocOpen: false
+
+  # ---- 首页 ----
+  homeInfoParams:
+    Title: "你好，我是 Hsiang 👋"
+    Content: >
+      欢迎来到我的个人主页。这里记录了我的项目、技术笔记和生活随想。
+
+      专注于 **后端开发**、**系统设计** 和 **开源贡献**。
+
+  # ---- 社交链接 ----
+  socialIcons:
+    - name: github
+      url: https://github.com/hsiang0117
+    - name: email
+      url: mailto:youremail@example.com
+    - name: rss
+      url: /index.xml
+
+  # ---- 搜索配置 ----
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys:
+      - title
+      - permalink
+      - summary
+      - content
+
+  # ---- 编辑链接 ----
+  editPost:
+    URL: https://github.com/hsiang0117/hsiang0117.github.io/tree/main/content
+    Text: "在 GitHub 上编辑"
+    appendFilePath: true
+
+  # ---- 其他 ----
+  label:
+    text: "Home"
+    icon: /favicon.ico
+    iconHeight: 24
+
+  assets:
+    disableFingerprinting: false
+
+  cover:
+    hidden: false
+    hiddenInList: false
+    hiddenInSingle: false
+
+# ============================================================
+# Markdown 配置
+# ============================================================
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # 允许内嵌 HTML
+  highlight:
+    noClasses: false
+    style: monokai
+    guessSyntax: true
+  tableOfContents:
+    endLevel: 4
+    ordered: false
+    startLevel: 1
+
+# ============================================================
+# 分类法
+# ============================================================
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
