@@ -1,0 +1,87 @@
+{
+  // ==========================================
+  // 编辑器
+  // ==========================================
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.rulers": [100],
+  "editor.wordWrapColumn": 100,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // ==========================================
+  // 文件
+  // ==========================================
+  // 排除这些目录，搜索/快速打开时不会出现
+  "files.exclude": {
+    "public": true,
+    "resources": true,
+    ".hugo_build.lock": true
+  },
+  // 搜索时也排除
+  "search.exclude": {
+    "public": true,
+    "resources": true,
+    "themes": true
+  },
+  // 保存时不自动在文件末尾加换行（Hugo 模板敏感）
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+
+  // ==========================================
+  // Markdown
+  // ==========================================
+  "[markdown]": {
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 120,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+
+  // ==========================================
+  // YAML (Hugo 配置)
+  // ==========================================
+  "[yaml]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced"
+  },
+
+  // ==========================================
+  // HTML / Go Template
+  // ==========================================
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[gohtml]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "emmet.includeLanguages": {
+    "gohtml": "html"
+  },
+
+  // ==========================================
+  // 关联文件类型
+  // ==========================================
+  "files.associations": {
+    "*.html": "gohtml",
+    "hugo.yaml": "yaml",
+    "hugo.toml": "toml"
+  },
+
+  // ==========================================
+  // Live Preview
+  // ==========================================
+  // 在 VS Code 内嵌浏览器预览站点
+  "livePreview.portNumber": 31313,
+  "livePreview.defaultPreviewPath": "http://localhost:1313",
+
+  // ==========================================
+  // Prettier
+  // ==========================================
+  "prettier.proseWrap": "preserve",
+  "prettier.singleQuote": false
+}

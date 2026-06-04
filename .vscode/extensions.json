@@ -1,0 +1,24 @@
+{
+  "recommendations": [
+    // ── Markdown ──
+    "yzhang.markdown-all-in-one",        // Markdown 快捷键、TOC、预览
+    "davidanson.vscode-markdownlint",     // Markdown 语法检查
+    "bierner.markdown-emoji",             // :emoji: 支持
+    "bierner.markdown-footnotes",         // 脚注支持
+    "bierner.markdown-mermaid",           // Mermaid 图表
+
+    // ── YAML / Front Matter ──
+    "redhat.vscode-yaml",                 // YAML 校验（hugo.yaml）
+    "eliostruyf.vscode-front-matter",     // Front matter 可视化编辑
+
+    // ── Hugo ──
+    "rusnasonov.vscode-hugo",            // Hugo 语法高亮和自动补全
+    "budparr.language-hugo-vscode",       // Hugo 模板语法
+
+    // ── 通用效率 ──
+    "esbenp.prettier-vscode",             // 代码格式化
+    "ms-vscode.live-editor",             // 内嵌浏览器预览
+    "eamodio.gitlens",                    // Git 增强
+    "editorconfig.editorconfig"           // 编辑器配置
+  ]
+}

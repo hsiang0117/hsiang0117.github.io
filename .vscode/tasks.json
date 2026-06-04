@@ -1,0 +1,77 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Hugo: 启动预览服务器",
+      "type": "shell",
+      "command": "hugo server -D --noHTTPCache",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "^(.+)$",
+          "file": 1
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^Start building sites",
+          "endsPattern": "^Total in"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Hugo: 构建站点",
+      "type": "shell",
+      "command": "hugo --minify --gc",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "Hugo: 清理并构建",
+      "type": "shell",
+      "command": "rm -rf public && hugo --minify --gc",
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Git: 提交并推送",
+      "type": "shell",
+      "command": "git add . && git commit -m \"update\" && git push",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    },
+    {
+      "label": "Hugo: 创建新文章",
+      "type": "shell",
+      "command": "hugo new content posts/${input:postName}.md",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always"
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "postName",
+      "type": "promptString",
+      "description": "文章文件名（英文，如 my-new-post）",
+      "default": "untitled"
+    }
+  ]
+}
