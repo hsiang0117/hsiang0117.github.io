@@ -5,26 +5,33 @@ layout: single
 ShowBreadCrumbs: true
 ---
 
-## 你好，我是 Hsiang 👋
+## 你好，我是 Xiang Jianxin 👋
 
-一名热爱技术的后端开发者，专注于构建高性能、可扩展的系统。
+计算机图形学硕士在读，坐标上海。专注于渲染技术、实时模拟和图形学算法。
 
-### 技能
+### 技术方向
 
-- **语言**: Go, Python, TypeScript, Java
-- **后端**: Gin, FastAPI, Spring Boot
-- **数据库**: PostgreSQL, Redis, MongoDB
-- **DevOps**: Docker, Kubernetes, GitHub Actions
-- **云平台**: AWS, Azure
+- **图形 API**: OpenGL, GLSL
+- **语言**: C++, Python, Java
+- **渲染**: 实时光照、光线追踪、着色器编程
+- **模拟**: 流体/水体模拟、粒子系统
+- **工具链**: CMake, Qt, ImGui, Git
 
-### 兴趣
+### 在做的项目
 
-- 分布式系统设计
-- 开源项目贡献
-- 技术写作与分享
-- 命令行工具开发
+- [TinyOpenGLRenderer](https://github.com/hsiang0117/TinyOpenGLRenderer) — 迷你 OpenGL 渲染器
+- [WaterModifier](https://github.com/hsiang0117/WaterModifier) — 水体模拟与编辑
+- [BattleCity](https://github.com/hsiang0117/BattleCity) — Java 复古坦克大战
+- [RayTracingInOneWeekend](https://github.com/hsiang0117/RayTracingInOneWeekend) — 从零实现光线追踪
 
-### 联系方式
+### 学习路线
 
-- GitHub: [@hsiang0117](https://github.com/hsiang0117)
-- Email: [your-email@example.com](mailto:your-email@example.com)
+当前在深入学习的领域：
+
+- **PBR** (Physically Based Rendering)
+- **实时全局光照** (Global Illumination)
+- **GPU 架构与优化**
+
+---
+
+> *"The goal of computer graphics is not just realism, but beauty."*

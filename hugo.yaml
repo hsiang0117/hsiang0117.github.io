@@ -4,7 +4,7 @@
 
 baseURL: https://hsiang0117.github.io/
 locale: zh-cn
-title: "Hsiang's Space"
+title: "Xiang Jianxin · 图形学"
 theme: PaperMod
 
 # 分页
@@ -73,18 +73,18 @@ params:
 
   # ---- 首页 ----
   homeInfoParams:
-    Title: "你好，我是 Hsiang 👋"
+    Title: "你好，我是 Xiang Jianxin 👋"
     Content: >
-      欢迎来到我的个人主页。这里记录了我的项目、技术笔记和生活随想。
+      计算机图形学硕士在读。热爱图形学、渲染技术和实时模拟。
 
-      专注于 **后端开发**、**系统设计** 和 **开源贡献**。
+      这里记录了我的学习笔记、项目实践和技术探索。
+
+      📍 Shanghai, China
 
   # ---- 社交链接 ----
   socialIcons:
     - name: github
       url: https://github.com/hsiang0117
-    - name: email
-      url: mailto:youremail@example.com
     - name: rss
       url: /index.xml
 
