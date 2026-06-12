@@ -67,7 +67,7 @@ params:
   ShowWordCount: true
   ShowBreadCrumbs: true
   ShowPostNavLinks: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowToc: true
   TocOpen: false
 
