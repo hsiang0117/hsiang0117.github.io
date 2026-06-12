@@ -1,5 +1,5 @@
 ---
-title: "关于我"
+title: "about"
 url: /about/
 layout: single
 ShowBreadCrumbs: true
@@ -13,9 +13,9 @@ TODO: 一两句自我介绍（身份、研究方向、坐标）。
 
 TODO: 列出你的技术栈，例如：
 
-- **图形 API**: 
-- **语言**: 
-- **其他**: 
+- **图形 API**:
+- **语言**:
+- **其他**:
 
 ### 在做的项目
 
