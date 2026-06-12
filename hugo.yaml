@@ -102,7 +102,7 @@ params:
   # ---- 编辑链接 ----
   editPost:
     URL: https://github.com/hsiang0117/hsiang0117.github.io/tree/main/content
-    Text: "在 GitHub 上编辑"
+    Text: "Edit on Github"
     appendFilePath: true
 
   # ---- 其他 ----

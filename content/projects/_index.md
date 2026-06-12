@@ -1,4 +1,4 @@
 ---
-title: "项目"
+title: "projects"
 url: /projects/
 ---
