@@ -1,11 +1,15 @@
 # ============================================================
 # Hugo PaperMod 配置 — hsiang0117.github.io
+# 双语站点：英文（默认，根路径）+ 中文（/zh/）
 # ============================================================
 
 baseURL: https://hsiang0117.github.io/
-locale: zh-cn
 title: "hsiang0117's personal page"
 theme: PaperMod
+
+# 默认语言（不带 URL 前缀）
+defaultContentLanguage: en
+defaultContentLanguageInSubdir: false
 
 # 分页
 paginate: 10
@@ -17,33 +21,7 @@ summaryLength: 120
 enableEmoji: true
 
 # ============================================================
-# 主导航菜单
-# ============================================================
-menu:
-  main:
-    - identifier: posts
-      name: posts
-      url: /posts/
-      weight: 10
-    - identifier: projects
-      name: projects
-      url: /projects/
-      weight: 20
-    - identifier: tags
-      name: tags
-      url: /tags/
-      weight: 30
-    - identifier: archive
-      name: archives
-      url: /archives/
-      weight: 40
-    - identifier: search
-      name: search
-      url: /search/
-      weight: 50
-
-# ============================================================
-# 输出格式
+# 输出格式（对每种语言生效）
 # ============================================================
 outputs:
   home:
@@ -52,12 +30,84 @@ outputs:
     - JSON  # 搜索需要
 
 # ============================================================
-# PaperMod 参数
+# 语言配置：导航菜单和首页文案各语言一套
+# ============================================================
+languages:
+  en:
+    label: English
+    locale: en
+    weight: 10
+    menu:
+      main:
+        - identifier: posts
+          name: posts
+          url: /posts/
+          weight: 10
+        - identifier: projects
+          name: projects
+          url: /projects/
+          weight: 20
+        - identifier: tags
+          name: tags
+          url: /tags/
+          weight: 30
+        - identifier: archive
+          name: archives
+          url: /archives/
+          weight: 40
+        - identifier: search
+          name: search
+          url: /search/
+          weight: 50
+    params:
+      homeInfoParams:
+        Title: "hsiang0117's personal page"
+        Content: >
+          I am hsiang0117, a master's student majoring in Computer Science and studying Computer Graphics. This is my personal homepage where I share my projects and thoughts.
+          Currently, I am doing an internship at Papergames in Shanghai as a Game Developer.
+
+  zh:
+    label: 中文
+    locale: zh-cn
+    weight: 20
+    title: "hsiang0117 的个人主页"
+    menu:
+      main:
+        - identifier: posts
+          name: 文章
+          url: /posts/
+          weight: 10
+        - identifier: projects
+          name: 项目
+          url: /projects/
+          weight: 20
+        - identifier: tags
+          name: 标签
+          url: /tags/
+          weight: 30
+        - identifier: archive
+          name: 归档
+          url: /archives/
+          weight: 40
+        - identifier: search
+          name: 搜索
+          url: /search/
+          weight: 50
+    params:
+      homeInfoParams:
+        Title: "hsiang0117 的个人主页"
+        Content: >
+          我是 hsiang0117，计算机科学专业硕士在读，研究方向为计算机图形学。这里是我的个人主页，分享我的项目与思考。
+          目前在上海叠纸游戏（Papergames）实习，担任游戏开发工程师。
+
+# ============================================================
+# PaperMod 参数（两种语言共用）
 # ============================================================
 params:
   # ---- 外观 ----
   defaultTheme: auto
   disableThemeToggle: false
+  displayFullLangName: true  # 语言切换按钮显示全名（中文 / English）
   ShowCodeCopyButtons: true
   ShowReadingTime: true
   ShowWordCount: true
@@ -66,13 +116,6 @@ params:
   ShowShareButtons: false
   ShowToc: true
   TocOpen: false
-
-  # ---- 首页 ----
-  homeInfoParams:
-    Title: "hsiang0117's personal page"
-    Content: >
-      I am hsiang0117, a master's student majoring in Computer Science and studying Computer Graphics. This is my personal homepage where I share my projects and thoughts.
-      Currently, I am doing an internship at Papergames in Shanghai as a Game Developer.
 
   # ---- 社交链接 ----
   socialIcons:

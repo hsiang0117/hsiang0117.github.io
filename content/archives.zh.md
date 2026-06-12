@@ -1,4 +1,4 @@
 ---
-title: "archives"
+title: "归档"
 layout: archives
 ---

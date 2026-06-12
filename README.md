@@ -1,6 +1,6 @@
 # hsiang0117.github.io
 
-个人主页，基于 Hugo + PaperMod 主题，托管于 GitHub Pages。
+个人主页，基于 Hugo + PaperMod 主题，托管于 GitHub Pages。**双语站点**：英文为默认语言（根路径），中文在 `/zh/` 下，导航栏右上角可切换。
 
 - 🔗 **线上地址**: https://hsiang0117.github.io/
 - 📦 **仓库**: https://github.com/hsiang0117/hsiang0117.github.io
@@ -17,15 +17,16 @@
 │   └── deploy.yml           # GitHub Actions 自动部署
 │
 ├── content/                 # ★ 所有内容都在这里（Markdown）
-│   ├── about.md             #   关于页
-│   ├── archives.md          #   归档页
-│   ├── search.md            #   搜索页
+│   ├── archives.md          #   归档页（英文）+ archives.zh.md（中文）
+│   ├── search.md            #   搜索页（英文）+ search.zh.md（中文）
 │   ├── posts/               #   博客文章
-│   │   ├── _index.md        #     文章列表页标题
-│   │   └── *.md             #     每篇一文件
+│   │   ├── _index.md        #     列表页标题（+ _index.zh.md 中文）
+│   │   ├── 文章名.md         #     英文版
+│   │   └── 文章名.zh.md      #     中文版
 │   └── projects/            #   项目展示
-│       ├── _index.md        #     项目列表页标题
-│       └── *.md             #     每个项目一文件
+│       ├── _index.md        #     列表页标题（+ _index.zh.md 中文）
+│       ├── 项目名.md         #     英文版
+│       └── 项目名.zh.md      #     中文版
 │
 ├── themes/PaperMod/         # 主题（git submodule，一般不用动）
 ├── static/                  # 静态资源（图片、favicon 等放这里）
@@ -41,10 +42,11 @@
 
 ```bash
 # 创建文章（自动填入 frontmatter 模板）
-hugo new content posts/我的新文章.md
-
-# 然后编辑生成的文件 content/posts/我的新文章.md
+hugo new content posts/my-new-post.md       # 英文版
+hugo new content posts/my-new-post.zh.md    # 中文版
 ```
+
+**双语规则**：同名文件 `xxx.md` 是英文版（默认语言），`xxx.zh.md` 是中文版，Hugo 自动把两者关联为互译页面。只写一种语言也可以——另一种语言的列表里不会出现该文章。
 
 #### Frontmatter 模板
 
@@ -73,23 +75,19 @@ hugo new content projects/项目名.md
 
 Frontmatter 同上，正文写项目描述。
 
-### 3. 修改"关于我"
-
-编辑 `content/about.md`，直接改正文。
-
-### 4. 修改站点配置
+### 3. 修改站点配置
 
 编辑 `hugo.yaml`，主要关注这几个部分：
 
 | 配置区域 | 用途 |
 |----------|------|
-| `title` | 浏览器标签页标题 |
-| `menu.main` | 顶部导航栏 |
-| `params.homeInfoParams` | 首页欢迎语 |
+| `title` | 浏览器标签页标题（英文站；中文站标题在 `languages.zh.title`） |
+| `languages.<en|zh>.menu.main` | 各语言的顶部导航栏 |
+| `languages.<en|zh>.params.homeInfoParams` | 各语言的首页欢迎语 |
 | `params.socialIcons` | 底部社交图标 |
 | `params.defaultTheme` | `auto` / `light` / `dark` |
 
-### 5. 换头像 / 加图片
+### 4. 换头像 / 加图片
 
 把图片放到 `static/` 目录下，然后在文章中引用：
 
