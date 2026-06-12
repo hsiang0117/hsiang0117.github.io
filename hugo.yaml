@@ -4,7 +4,7 @@
 
 baseURL: https://hsiang0117.github.io/
 locale: zh-cn
-title: "Xiang Jianxin · 图形学"
+title: "hsiang0117's personal page"
 theme: PaperMod
 
 # 分页
@@ -22,27 +22,27 @@ enableEmoji: true
 menu:
   main:
     - identifier: posts
-      name: 文章
+      name: posts
       url: /posts/
       weight: 10
     - identifier: projects
-      name: 项目
+      name: projects
       url: /projects/
       weight: 20
     - identifier: tags
-      name: 标签
+      name: tags
       url: /tags/
       weight: 30
     - identifier: archive
-      name: 归档
+      name: archives
       url: /archives/
       weight: 40
     - identifier: about
-      name: 关于
+      name: about
       url: /about/
       weight: 50
     - identifier: search
-      name: 搜索
+      name: search
       url: /search/
       weight: 60
 
@@ -73,13 +73,10 @@ params:
 
   # ---- 首页 ----
   homeInfoParams:
-    Title: "你好，我是 Xiang Jianxin 👋"
+    Title: "hsiang0117's personal page"
     Content: >
-      计算机图形学硕士在读。热爱图形学、渲染技术和实时模拟。
-
-      这里记录了我的学习笔记、项目实践和技术探索。
-
-      📍 Shanghai, China
+      I am hsiang0117, a master's student majoring in Computer Science and studying Computer Graphics. This is my personal homepage where I share my projects and thoughts.
+      Currently, I am doing an internship at Papergames in Shanghai as a Game Developer.
 
   # ---- 社交链接 ----
   socialIcons:

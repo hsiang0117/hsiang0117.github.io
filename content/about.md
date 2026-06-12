@@ -5,33 +5,26 @@ layout: single
 ShowBreadCrumbs: true
 ---
 
-## 你好，我是 Xiang Jianxin 👋
+## TODO: 打招呼标题（例如：你好，我是 XXX 👋）
 
-计算机图形学硕士在读，坐标上海。专注于渲染技术、实时模拟和图形学算法。
+TODO: 一两句自我介绍（身份、研究方向、坐标）。
 
 ### 技术方向
 
-- **图形 API**: OpenGL, GLSL
-- **语言**: C++, Python, Java
-- **渲染**: 实时光照、光线追踪、着色器编程
-- **模拟**: 流体/水体模拟、粒子系统
-- **工具链**: CMake, Qt, ImGui, Git
+TODO: 列出你的技术栈，例如：
+
+- **图形 API**: 
+- **语言**: 
+- **其他**: 
 
 ### 在做的项目
 
-- [TinyOpenGLRenderer](https://github.com/hsiang0117/TinyOpenGLRenderer) — 迷你 OpenGL 渲染器
-- [WaterModifier](https://github.com/hsiang0117/WaterModifier) — 水体模拟与编辑
-- [BattleCity](https://github.com/hsiang0117/BattleCity) — Java 复古坦克大战
-- [RayTracingInOneWeekend](https://github.com/hsiang0117/RayTracingInOneWeekend) — 从零实现光线追踪
+TODO: 列出项目名称 + GitHub 链接 + 一句话描述。
 
 ### 学习路线
 
-当前在深入学习的领域：
-
-- **PBR** (Physically Based Rendering)
-- **实时全局光照** (Global Illumination)
-- **GPU 架构与优化**
+TODO: 当前在深入学习的领域。
 
 ---
 
-> *"The goal of computer graphics is not just realism, but beauty."*
+> TODO: （可选）一句喜欢的话作为签名。
