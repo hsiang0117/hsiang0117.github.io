@@ -37,14 +37,10 @@ menu:
       name: archives
       url: /archives/
       weight: 40
-    - identifier: about
-      name: about
-      url: /about/
-      weight: 50
     - identifier: search
       name: search
       url: /search/
-      weight: 60
+      weight: 50
 
 # ============================================================
 # 输出格式
