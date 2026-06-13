@@ -4,13 +4,27 @@
 <script defer src="/katex.min.js"></script>
 <script defer src="/auto-render.min.js"></script>
 <script defer>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
+    // Hugo 的 HTML 渲染器会把 & 转成 &amp;，即使在 passthrough 块中
+    // 在 KaTeX 渲染前先把数学块里的 &amp; 还原
+    var article = document.querySelector(".post-content");
+    if (article) {
+      article.innerHTML = article.innerHTML
+        // $$...$$ 块
+        .replace(/\$\$([\s\S]*?)\$\$/g, function (m, body) {
+          return "$$" + body.replace(/&amp;/g, "&") + "$$";
+        })
+        // $...$ 行内
+        .replace(/\$([^$]+)\$/g, function (m, body) {
+          return "$" + body.replace(/&amp;/g, "&") + "$";
+        });
+    }
     renderMathInElement(document.body, {
       delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$',  right: '$',  display: false},
-        {left: '\\(', right: '\\)', display: false},
-        {left: '\\[', right: '\\]', display: true}
+        {left: "$$", right: "$$", display: true},
+        {left: "$",  right: "$",  display: false},
+        {left: "\\(", right: "\\)", display: false},
+        {left: "\\[", right: "\\]", display: true}
       ],
       throwOnError: false
     });
