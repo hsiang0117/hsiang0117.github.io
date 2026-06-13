@@ -1,0 +1,19 @@
+<!-- KaTeX 数学公式渲染 -->
+{{ if .Params.math }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+  integrity="sha384-nB0miv6/jRbc5jwb3+3k0WYR1P7M9cjd4Hq+5kRHkWjJx0+L0BgZ8g6tVqJ1QC4B" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+  integrity="sha384-RMnT9ha3NhHylTDVg7S4pvlXtAVhGVTk8C0jG8h+5kB3BaWWKPRlYvGBJsy4Op2+" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  integrity="sha384-hCXGrW6PitJE+rQsGEuFG6JNOz/8Q6fS2DtyVONUOh8BWddQpKBmQ2qWkXSORmbO" crossorigin="anonymous"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '$$', right: '$$', display: true},
+      {left: '$',  right: '$',  display: false},
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ],
+    throwOnError: false
+  });">
+</script>
+{{ end }}

@@ -165,6 +165,15 @@ markup:
   goldmark:
     renderer:
       unsafe: true  # 允许内嵌 HTML
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+            - ['$$', '$$']
+            - ['\\[', '\\]']
+          inline:
+            - ['$', '$']
+            - ['\\(', '\\)']
   highlight:
     noClasses: false
     style: monokai
