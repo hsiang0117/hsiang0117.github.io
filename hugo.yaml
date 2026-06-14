@@ -60,6 +60,7 @@ languages:
           url: /search/
           weight: 50
     params:
+      description: "hsiang0117's personal blog — computer graphics, game development, and C++."
       homeInfoParams:
         Title: "hsiang0117's personal page"
         Content: >
@@ -94,6 +95,7 @@ languages:
           url: /search/
           weight: 50
     params:
+      description: "hsiang0117 的个人博客，分享计算机图形学、游戏引擎、C++ 与面试笔记。"
       homeInfoParams:
         Title: "hsiang0117 的个人主页"
         Content: >
@@ -104,6 +106,19 @@ languages:
 # PaperMod 参数（两种语言共用）
 # ============================================================
 params:
+  # ---- SEO ----
+  description: "hsiang0117 的个人博客，分享计算机图形学、游戏开发与 C++ 相关内容。"
+  author: hsiang0117
+  analytics:
+    google:
+      SiteVerificationTag: oiyjf8FiB3I8lpUm2rgnrjXXQH9cDYyZDy8XJemOFGc
+  keywords:
+    - 计算机图形学
+    - 游戏开发
+    - C++
+    - OpenGL
+    - Unreal Engine
+
   # ---- 外观 ----
   defaultTheme: auto
   disableThemeToggle: false
