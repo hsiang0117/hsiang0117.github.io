@@ -10,7 +10,7 @@ summary: "An AI-assisted desktop tool for editing water masks in Cesium quantize
 
 [GitHub](https://github.com/hsiang0117/WaterModifier)
 
-An AI-assisted desktop tool for editing **water masks in geospatial terrain datasets**. Browse a satellite tile map, click a few foreground / background points, let **Segment Anything** extract the water region, and write the result directly back into Cesium quantized-mesh `.terrain` tiles — automatically synchronized across LOD levels.
+An AI-assisted desktop tool for editing **water masks in geospatial terrain datasets**. Browse a satellite tile map, click a few foreground / background points, let **Segment Anything** extract the water region, and write the result directly back into Cesium quantized-mesh `.terrain` tiles — automatically synchronized across LOD levels. Validated on a real GIS dataset (Yaohu Airport, maxzoom 18).
 
 Built as two cooperating processes: an **Unreal Engine 5.4** frontend (map browsing, visualization, interaction) and a **Python backend** (SAM inference + terrain file surgery), talking over a TCP socket with a length-prefixed protocol.
 
@@ -30,6 +30,11 @@ Built as two cooperating processes: an **Unreal Engine 5.4** frontend (map brows
 - 🧹 **Morphological cleanup** — opening / closing passes remove segmentation noise, followed by smoothing convolutions so edited water edges blend naturally
 - 🔁 **LOD synchronization** — edits recursively propagate to higher zoom levels by quadrant-splitting the parent mask and nearest-neighbor upsampling, all the way down to the dataset's max LOD
 - 📊 **Live progress** — a timer thread streams the modified-tile count back to the UI every 0.5 s during bulk writes
+
+### Key engineering points
+
+- **Dual-end binary format consistency** — Cesium quantized-mesh-1.0 is parsed twice, once per end: Python implements the *writer* (manually walking header / vertex blocks / index blocks / edge blocks / extension records, with 2/4-byte index width chosen by triangle count), UE C++ implements the *reader* (visualization) — both ends must agree byte-for-byte on the format
+- **Camera ↔ tile coordinate chain** — a C++ function library implements the full pipeline from camera view → tile numbers → geo-coordinates (including tilemapresource.xml parsing and `units-per-pixel` conversion)
 
 ### Tech stack
 

@@ -16,6 +16,8 @@ A mini real-time renderer and scene editor built on **OpenGL 4.5 + C++17**, made
 
 ![Editor overview (docking layout)](https://raw.githubusercontent.com/hsiang0117/TinyOpenGLRenderer/master/data/docked_layout.png)
 
+<img src="https://raw.githubusercontent.com/hsiang0117/TinyOpenGLRenderer/master/data/image.png" alt="Rendering showcase" loading="lazy" style="width: 100%;">
+
 <img src="https://raw.githubusercontent.com/hsiang0117/TinyOpenGLRenderer/master/data/volumeCloud.gif" alt="Volumetric clouds" loading="lazy" style="width: 100%;">
 
 <img src="https://raw.githubusercontent.com/hsiang0117/TinyOpenGLRenderer/master/data/animation.gif" alt="Skeletal animation" loading="lazy" style="width: 100%;">
@@ -24,8 +26,9 @@ A mini real-time renderer and scene editor built on **OpenGL 4.5 + C++17**, made
 
 - 🎨 **Forward HDR pipeline** — RGBA16F render targets, Bloom (ping-pong Gaussian blur), exposure tone mapping
 - 💡 **Multiple lights** — directional / point / spot, light data uploaded via SSBO
-- 🌑 **Shadows** — 2D shadow map for the directional light, cube map array for omnidirectional point-light shadows
-- ☁️ **Volumetric clouds** (Horizon-style raymarch) — Perlin-Worley noise (low-freq FBM shaping + high-freq Worley edge erosion, domain warping, weather-map coverage), dual-lobe HG phase, 4-octave multi-scattering approximation, powder effect, self-shadowing light march; rendered at half resolution with depth-aware bilateral upsampling and empty-space skipping. All 15 cloud parameters (type, coverage, noise scale, lighting, wind…) are component-driven and editable live in the Inspector
+- 🌑 **Shadows** — 2D shadow map for the directional light (front-face culling against peter-panning), cube map array for omnidirectional point-light shadows
+- ✂️ **Real frustum culling** — Gribb-Hartmann 6-plane extraction + AABB tests; off-screen objects (including point lights) are never submitted for drawing
+- ☁️ **Volumetric clouds** (Horizon-style raymarch) — Perlin-Worley noise (low-freq FBM shaping + high-freq Worley edge erosion, domain warping, weather-map coverage), dual-lobe HG phase, 4-octave multi-scattering approximation, powder effect, self-shadowing light march; half-resolution rendering with depth-aware bilateral upsampling, empty-space skipping, and world-scale adaptive step counts. **Noise textures are generated in parallel on worker threads** with a **versioned self-describing disk cache** (auto-invalidated on parameter changes). All 15 cloud parameters (type, coverage, noise scale, lighting, wind…) are component-driven and editable live in the Inspector — multiple different clouds per scene
 - 🦴 **Skeletal animation** — Assimp import, GPU skinning, bone debug overlay
 - 🌅 Skybox and async model loading (PLY + common formats)
 
@@ -35,6 +38,7 @@ A mini real-time renderer and scene editor built on **OpenGL 4.5 + C++17**, made
 - 🔧 **Component Inspector** — dedicated panels for Transform, lights, materials, volumetric clouds
 - 📌 **Selection gizmo** — XYZ axis arrows at the selected object's origin (rotates with the object, always on top, constant screen size)
 - 📜 **In-app log console** — GL debug output and engine logs inside the editor, no system console window
+- ➕ **Data-driven Add menu** — one-click creation of lights / meshes / skybox / volumetric clouds
 
 ### Architecture
 
@@ -42,6 +46,7 @@ A mini real-time renderer and scene editor built on **OpenGL 4.5 + C++17**, made
 - **RenderPass pipeline** — FrameSetup → Shadows → LightUpload → ForwardHdr → Volume/Skeleton → Gizmo → Bloom → Composite, passes share state only through a RenderContext
 - **Dependency injection** — Engine as composition root, no singletons (except the logger)
 - **RAII GL resources** — move-only wrappers for textures / FBOs / buffers
+- **Driver-detail handling** — static meshes bind a dummy texture on the bone-texture unit (8) so sampler completeness passes driver validation even in scenes without animation
 
 ### Tech stack
 
