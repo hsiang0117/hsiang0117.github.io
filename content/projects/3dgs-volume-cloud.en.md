@@ -14,6 +14,12 @@ A research project that replaces ray-marched volumetric clouds in game engines w
 
 Built on the [3DGS (Kerbl et al., 2023)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) codebase, with the representation, shading, rasterizer, and training pipeline reworked for participating media.
 
+### Why this exists
+
+Volumetric clouds in game engines have long relied on ray-marching: dozens of steps along the view ray per pixel, plus a light march at every sample, with cost climbing as resolution and cloud depth grow. 3D Gaussian Splatting replaces the per-pixel stepping with rasterization, but the cost lands on the representation — a vanilla Gaussian carries SH color plus a heuristic opacity, which describes "what color this looks like from a given direction," not "how thick this medium is, how much it scatters, and in which direction." Fitting a cloud with that bakes in one lighting condition: move the sun and the reconstruction no longer holds.
+
+So the problem here is not "can a cloud be fitted convincingly" but **whether the representation itself can be made physical while keeping rasterization speed** — giving every Gaussian participating-medium quantities like extinction coefficient, scattering albedo and phase eccentricity, so that sun direction becomes an input at inference time rather than a constant baked in during training. That decision propagates all the way down: optical depth has to be integrated analytically instead of alpha-blended heuristically, self-shadowing has to be differentiable so shadow gradients can flow back, and every opacity-based heuristic in densification and pruning has to be replaced by something that still holds under the physical parameterization.
+
 ### Demo
 
 <video controls muted loop playsinline style="width: 100%; border-radius: 8px;">

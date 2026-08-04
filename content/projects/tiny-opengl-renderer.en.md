@@ -12,6 +12,12 @@ summary: "A mini real-time renderer / scene editor built on OpenGL 4.5 + C++17 �
 
 A mini real-time renderer and scene editor built on **OpenGL 4.5 + C++17**, made for learning and experimenting with modern rendering techniques. Component-driven ECS-lite architecture, a RenderPass pipeline, and a Dear ImGui (docking) editor UI.
 
+### Why this exists
+
+Individual real-time rendering techniques are all well covered by tutorials online, but those tutorials tend to stand alone: one demo for shadows, another for volumetric clouds, a third for skeletal animation, with parameters hard-coded and a recompile needed to change a value. This project wanted the opposite — those techniques living in one scene, sharing a single lighting setup and a single render pipeline, with every parameter editable at runtime and the result visible immediately.
+
+A sizeable share of the work therefore went into places that produce no pixels directly: splitting rendering into an explicit RenderPass sequence (passes exchange state only through a RenderContext), turning renderable things into components attached to a GameObject, and giving every component type its own Inspector panel. The payoff is that the volumetric cloud's dozen-plus parameters can be dragged and watched live, and several clouds with different parameters can coexist in one scene; the cost is a layer of indirection over a purpose-built demo.
+
 ### Screenshots
 
 ![Editor overview (docking layout)](https://raw.githubusercontent.com/hsiang0117/TinyOpenGLRenderer/master/data/docked_layout.png)
@@ -50,4 +56,4 @@ A mini real-time renderer and scene editor built on **OpenGL 4.5 + C++17**, made
 
 ### Tech stack
 
-`C++17` · `OpenGL 4.5` — GLFW, glad, glm, Assimp, Dear ImGui (docking), stb_image. Builds with Visual Studio 2022 (x64), all dependencies bundled in-repo.
+`C++17` · `OpenGL 4.5` — GLFW, glad, glm, Assimp, Dear ImGui (docking), stb_image. Builds with Visual Studio 2022 (x64), all dependencies bundled in-repo. Dependencies are bundled in-repo (`include/` + `lib/`); open the `.sln`, pick Debug/Release x64 and build. On launch it loads a default scene with a skybox, a ground plane and a directional light.

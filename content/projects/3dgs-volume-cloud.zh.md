@@ -14,6 +14,12 @@ summary: "用物理参数化的 3D Gaussian Splatting 实现实时体积云渲�
 
 基于 [3DGS (Kerbl et al., 2023)](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) 代码框架，对表示、着色、光栅化器和训练管线做了参与介质（participating medium）方向的重构。
 
+### 为什么做这个
+
+游戏引擎里的体积云长期依赖 ray-marching：每个像素沿视线步进几十次，再为每个采样点做一次光照 march，成本随分辨率与云层厚度上升。3D Gaussian Splatting 用光栅化替掉了逐像素步进，但代价落在表示上——原版每个高斯携带的是 SH 颜色加一个经验 opacity，这套参数描述的是"从某个方向看过去是什么颜色"，而不是"这团介质有多厚、散射多少、往哪个方向散"。直接拿它拟合云，等于把一种光照烘死：太阳一动，重建就不成立了。
+
+所以这里要解决的问题不是"能不能把云拟合得像"，而是**能不能在保留光栅化速度的同时让表示本身是物理的**——让每个高斯携带消光系数、散射反照率、相函数偏度这类参与介质量，使太阳方向变成推理时的输入，而不是训练时烘进去的常量。这个决定会一路传导下去：光学厚度得解析积分而非启发式 alpha 混合，自阴影得可微以便阴影梯度回传，致密化与剪枝里所有基于 opacity 的启发式也都要换成在物理参数化下仍然成立的形式。
+
 ### 演示
 
 <video controls muted loop playsinline style="width: 100%; border-radius: 8px;">
@@ -63,7 +69,6 @@ UE5 渲染的体积云（WDAS cloud VDB）：60 个 Fibonacci 均匀半球太阳
 ### 交互 Viewer
 
 基于 viser：实时拖动太阳方向做 relighting，可视化通道（RGB / T_light / `σ_t` / depth），可选 HDR 天空背景合成。
-
 ### 技术栈
 
 `Python` · `CUDA` · `C++` · `PyTorch` — 自定义可微光栅化器（fork 自 diff-gaussian-rasterization，含 analytic-tau / record_front_tau / lightpass-backward 通道），三阶段采集管线（UE 采集 → 坐标系转换 → 数据集切分）。

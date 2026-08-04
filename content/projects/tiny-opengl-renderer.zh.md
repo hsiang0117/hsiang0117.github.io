@@ -12,6 +12,12 @@ summary: "基于 OpenGL 4.5 + C++17 的迷你实时渲染器 / 场景编辑器�
 
 一个基于 **OpenGL 4.5 + C++17** 的迷你实时渲染器 / 场景编辑器，用于学习与实验现代渲染技术。组件驱动的 ECS-lite 架构、RenderPass 流水线、Dear ImGui（docking）编辑器界面。
 
+### 为什么做这个
+
+现代实时渲染的单项技术在网上都找得到教程，但这些教程往往彼此独立：一个 demo 讲阴影、另一个讲体积云、第三个讲骨骼动画，参数写死在代码里，改一个值就要重编译。这个项目要的是相反的东西——把这些技术收进同一个场景，让它们共享同一套光照与同一条渲染流水线，并且所有参数都能在运行时改、改完立刻看到结果。
+
+因此有相当一部分工程量花在了不直接产生像素的地方：把渲染拆成显式的 RenderPass 序列（各 pass 只通过 RenderContext 交换状态），把可渲染物体做成挂在 GameObject 上的组件，再为每类组件配一个 Inspector 面板。收益是体积云那十几个参数可以边拖边看，同一场景里还能同时存在参数不同的多朵云；代价是相比一个专门写死的 demo，多了一层间接。
+
 ### 截图
 
 ![编辑器总览（docking 布局）](https://raw.githubusercontent.com/hsiang0117/TinyOpenGLRenderer/master/data/docked_layout.png)
@@ -50,4 +56,4 @@ summary: "基于 OpenGL 4.5 + C++17 的迷你实时渲染器 / 场景编辑器�
 
 ### 技术栈
 
-`C++17` · `OpenGL 4.5` — GLFW、glad、glm、Assimp、Dear ImGui（docking）、stb_image。Visual Studio 2022（x64）构建，依赖全部捆绑在仓库内。
+`C++17` · `OpenGL 4.5` — GLFW、glad、glm、Assimp、Dear ImGui（docking）、stb_image。Visual Studio 2022（x64）构建，依赖全部捆绑在仓库内。 依赖已捆绑在仓库内（`include/` + `lib/`），打开 `.sln` 选 Debug/Release x64 直接生成；启动后自动加载一个带天空盒、地面与平行光的默认场景。
