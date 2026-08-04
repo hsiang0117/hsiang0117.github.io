@@ -11,11 +11,18 @@ theme: PaperMod
 defaultContentLanguage: zh
 defaultContentLanguageInSubdir: false
 
+# 用 git 提交时间作为 lastmod（让 sitemap / OG 日期反映真实修改时间）
+enableGitInfo: true
+
+# 生成 /robots.txt（含 Sitemap 声明）
+enableRobotsTXT: true
+
 # 启用 CJK 词数统计（中文、日文、韩文）
 hasCJKLanguage: true
 
 # 分页
-paginate: 10
+pagination:
+  pagerSize: 10
 
 # 摘要长度
 summaryLength: 120
@@ -31,6 +38,12 @@ outputs:
     - HTML
     - RSS
     - JSON  # 搜索需要
+
+# 不要在每个页面的 <head> 里用 rel=alternate 宣传 index.json，
+# 否则搜索引擎会把这份全站正文当成可索引的重复内容（搜索功能不受影响）
+outputFormats:
+  JSON:
+    notAlternative: true
 
 # ============================================================
 # 语言配置：导航菜单和首页文案各语言一套
@@ -104,7 +117,7 @@ languages:
           url: /search/
           weight: 50
     params:
-      description: "hsiang0117 的个人博客，分享计算机图形学、游戏引擎、C++ 与面试笔记。"
+      description: "hsiang0117 的个人博客，分享计算机图形学、实时渲染、游戏引擎与 C++ 实践。"
       homeInfoParams:
         Title: "hsiang0117 的个人主页"
         Content: >
@@ -121,7 +134,8 @@ params:
     - projects
 
   # ---- SEO ----
-  description: "hsiang0117 的个人博客，分享计算机图形学、游戏开发与 C++ 相关内容。"
+  # 说明：meta description 由 languages.{zh,en}.params.description 提供，
+  # 顶级 description 永远不会被输出，故不在此重复定义。
   author: hsiang0117
   analytics:
     google:
@@ -214,8 +228,9 @@ markup:
 
 # ============================================================
 # 分类法
+# 只保留 tags：categories / series 没有任何内容使用，
+# 会生成正文为空的页面（soft 404）。注意必须保留本 key，
+# 整块删掉会回落到 Hugo 默认值（含 categories）。
 # ============================================================
 taxonomies:
-  category: categories
   tag: tags
-  series: series

@@ -1,1 +1,4 @@
 {{ partial "math.html" . }}
+{{- /* hreflang x-default：给语言既不匹配 zh 也不匹配 en 的搜索者一个 fallback，指向英文版。
+       用 .AllTranslations 而不是硬编码 URL，保证每个页面指向它自己的英文对应页。 */ -}}
+{{- range .AllTranslations }}{{ if eq .Lang "en" }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}{{ end }}
