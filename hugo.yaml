@@ -20,7 +20,7 @@ enableRobotsTXT: true
 # 启用 CJK 词数统计（中文、日文、韩文）
 hasCJKLanguage: true
 
-# 分页
+# 分页（pagination.pagerSize；旧写法 paginate 已弃用）
 pagination:
   pagerSize: 10
 

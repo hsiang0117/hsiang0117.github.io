@@ -1,6 +1,6 @@
 # hsiang0117.github.io
 
-个人主页，基于 Hugo + PaperMod 主题，托管于 GitHub Pages。**双语站点**：英文为默认语言（根路径），中文在 `/zh/` 下，导航栏右上角可切换。
+个人主页，基于 Hugo + PaperMod 主题，托管于 GitHub Pages。**双语站点**：中文为默认语言（根路径），英文在 `/en/` 下，导航栏右上角可切换。
 
 - 🔗 **线上地址**: https://hsiang0117.github.io/
 - 📦 **仓库**: https://github.com/hsiang0117/hsiang0117.github.io
@@ -17,21 +17,21 @@
 │   └── deploy.yml           # GitHub Actions 自动部署
 │
 ├── content/                 # ★ 所有内容都在这里（Markdown）
-│   ├── archives.md          #   归档页（英文）+ archives.zh.md（中文）
-│   ├── search.md            #   搜索页（英文）+ search.zh.md（中文）
+│   ├── archives.zh.md       #   归档页（中文）+ archives.en.md（英文）
+│   ├── search.zh.md         #   搜索页（中文）+ search.en.md（英文）
 │   ├── posts/               #   博客文章
-│   │   ├── _index.md        #     列表页标题（+ _index.zh.md 中文）
-│   │   ├── 文章名.md         #     英文版
-│   │   └── 文章名.zh.md      #     中文版
+│   │   ├── _index.zh.md     #     列表页标题（+ _index.en.md 英文）
+│   │   ├── 文章名.md         #     中文版
+│   │   └── 文章名.en.md      #     英文版
 │   └── projects/            #   项目展示
-│       ├── _index.md        #     列表页标题（+ _index.zh.md 中文）
-│       ├── 项目名.md         #     英文版
-│       └── 项目名.zh.md      #     中文版
+│       ├── _index.zh.md     #     列表页标题（+ _index.en.md 英文）
+│       ├── 项目名.md         #     中文版
+│       └── 项目名.en.md      #     英文版
 │
 ├── themes/PaperMod/         # 主题（git submodule，一般不用动）
 ├── static/                  # 静态资源（图片、favicon 等放这里）
 ├── archetypes/              # 模板（hugo new 时的默认 frontmatter）
-└── layouts/                 # 自定义布局（一般不用动）
+└── layouts/                 # 自定义布局 + PaperMod 覆盖（见下方维护备忘）
 ```
 
 ---
@@ -42,11 +42,11 @@
 
 ```bash
 # 创建文章（自动填入 frontmatter 模板）
-hugo new content posts/my-new-post.md       # 英文版
-hugo new content posts/my-new-post.zh.md    # 中文版
+hugo new content posts/my-new-post.md       # 中文版
+hugo new content posts/my-new-post.en.md    # 英文版
 ```
 
-**双语规则**：同名文件 `xxx.md` 是英文版（默认语言），`xxx.zh.md` 是中文版，Hugo 自动把两者关联为互译页面。只写一种语言也可以——另一种语言的列表里不会出现该文章。
+**双语规则**：同名文件 `xxx.md` 是中文版（默认语言），`xxx.en.md` 是英文版，Hugo 自动把两者关联为互译页面。只写一种语言也可以——另一种语言的列表里不会出现该文章。
 
 #### Frontmatter 模板
 
@@ -81,7 +81,7 @@ Frontmatter 同上，正文写项目描述。
 
 | 配置区域 | 用途 |
 |----------|------|
-| `title` | 浏览器标签页标题（英文站；中文站标题在 `languages.zh.title`） |
+| `title` | 浏览器标签页标题（顶层 `title` 是英文站标题；中文站标题在 `languages.zh.title`） |
 | `languages.<en|zh>.menu.main` | 各语言的顶部导航栏 |
 | `languages.<en|zh>.params.homeInfoParams` | 各语言的首页欢迎语 |
 | `params.socialIcons` | 底部社交图标 |
@@ -137,5 +137,6 @@ git push
 ## 维护备忘
 
 - **PaperMod 版本**: 跟随 git submodule，更新命令见上方
+- **主题覆盖文件**: `layouts/baseof.html`、`layouts/rss.xml`、`layouts/_partials/`（header / translation_list / templates/opengraph）是 PaperMod 同名文件的站点级覆盖，仅替换了 Hugo 0.158 弃用的 API（`LanguageDirection→Direction`、`LanguageCode→Locale`、`LanguageName→Label`）。更新主题后如对应文件有变动，需同步覆盖文件
 - **Hugo 版本**: 当前为 extended v0.162，GitHub Actions 中用 `peaceiris/actions-hugo@v3` 保持一致
 - **主题文档**: https://github.com/adityatelange/hugo-PaperMod/wiki
